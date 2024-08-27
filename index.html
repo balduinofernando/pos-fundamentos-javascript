@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terminal de POS</title>
+  <!-- <link rel="stylesheet" href="styles/main.css"> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    #product-list {
+      max-height: 100vh;
+      /* overflow-y: auto; */
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header Top -->
+  <nav class="bg-primary text-white d-flex align-items-center justify-content-between content-between px-4 py-2">
+    <h4>SUMBA-POS</h4>
+    <div class="gap-3 d-flex align-items-center">
+      <i class="fa-solid fa-print" role="button"></i>
+      <i class="fa-solid fa-user-check" role="button"></i>
+    </div>
+    <div class="d-flex align-items-center gap-3 pr-2">
+      <!-- Icons -->
+
+      <span href="#" class="text-white d-flex gap-3 align-items-center">
+        <i role="button" class="fa-solid fa-expand cursor-pointer" id="fullscreen-toggle"></i>
+        <span>Balduino Fernando</span>
+        <!-- <small>Loja Principal - <a href="#" class="text-link text-white">Sair</a></small> -->
+      </span>
+    </div>
+  </nav>
+
+  <!-- Main Section -->
+  <main class="mt-1 d-flex">
+    <!-- Left Panel -->
+    <!-- Aside -->
+
+    <aside class="min-vh-100 border-1 px-1">
+      <div class="d-flex justify-content-between px-1">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control flex-fill" placeholder="Cliente" username" value="Cliente Comum">
+
+          <button class="btn btn-outline-secondary">
+            Buscar
+          </button>
+          <button class="btn btn-primary">&plus;</button>
+        </div>
+      </div>
+
+      <!-- Cart Section -->
+      <div class="">
+        <table class="table table-hover table-sm">
+          <thead class="table-primary">
+            <th>Quantidade</th>
+            <th>Produto</th>
+            <th>Preço</th>
+            <th>Subtotal</th>
+            <th></th>
+          </thead>
+          <tbody id="cart-items">
+            <!-- <tr>
+              <td style="max-width: 10% !important;">
+                <input class="form-control-sm" type="number" min="1" value="2">
+              </td>
+              <td class="">Banana</td>
+              <td>100,00 AOA</td>
+              <td>200,00 AOA</td>
+              <td>
+                <button class="btn btn-sm btn-outline-danger">&times;</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input class="form-control-sm" type="number" min="1" value="2">
+              </td>
+              <td class="">Banana</td>
+              <td>100,00 AOA</td>
+              <td>200,00 AOA</td>
+              <td>
+                <button class="btn btn-sm btn-outline-danger">&times;</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <input class="form-control-sm" type="number" min="1" value="2">
+              </td>
+              <td class="">Banana</td>
+              <td>100,00 AOA</td>
+              <td>200,00 AOA</td>
+              <td>
+                <button class="btn btn-sm btn-outline-danger">&times;</button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="">Subtotal</td>
+              <td colspan="3" class="text-end">200,00 AOA</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td colspan="">Imposto</td>
+              <td colspan="">IVA(0%)</td>
+              <td colspan="2" class="text-end">0,00 AOA</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td colspan="">Desconto</td>
+              <td colspan="3" class="text-end">0,00 AOA</td>
+              <td></td>
+            </tr> -->
+          </tbody>
+          <!-- <tfoot>
+            <tr>
+              <td colspan="">TOTAL</td>
+              <td colspan="3" class="text-end" id="cart-total"></td>
+              <td></td>
+            </tr>
+          </tfoot> -->
+
+        </table>
+      </div>
+
+      <!-- Checkout -->
+      <!-- <div class="mt-auto">
+        <div class="d-flex btn-group">
+          <button class="rounded-0 btn btn-success flex-fill">Processar Pagamento</button>
+          <button class="rounded-0 btn btn-warning flex-fill">Reservar Compra</button>
+        </div>
+      </div> -->
+    </aside>
+
+    <!-- DB Products List -->
+    <div class="px-4">
+      <h4 class="bg-primary text-white text-end fs-3 p-2" id="screenTotal">Total de Compra: AOA 0,00</h4>
+      <input type="search" id="search-input" class="mb-3 form-control" placeholder="Pesquise pelo nome ou barcode" />
+      <div class="d-flex">
+
+        <div class="container p-0 pb-4">
+          <div class="row row-cols-sm-3 row-cols-md-4 g-4 overflow-auto" id="product-list">
+
+            <article class="col cursor-pointer d-flex text-center flex-column">
+              <!-- <img class="img-thumbnail img-responsive img-fluid" src="https://www.shutterstock.com/image-photo/lady-finger-dwarf-cavendish-banana-600nw-1569669346.jpg" alt="Banana" />
+								<p class="fs-5">Banana de Mesa Madura (250KZ)</p>
+								<p class="fs-5">250KZ &middot; Qde: 50</p>
+								<button class="btn-xs btn btn-dark rounded-0">Adicionar</button> -->
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Modal de Confirmação de Remoção -->
+<div class="modal fade" id="removeItemModal" tabindex="-1" aria-labelledby="removeItemModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="removeItemModalLabel">Confirmar Remoção</h5>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      </div>
+      <div class="modal-body">
+        <p>Digite a chave de supervisor para confirmar a remoção deste produto:</p>
+        <div class="mb-3">
+          <label for="supervisor-key" class="form-label">Chave de Supervisor</label>
+          <input type="password" class="form-control" id="supervisor-key" placeholder="Digite a chave">
+        </div>
+        <div id="removal-error" class="text-danger d-none">Chave inválida. Tente novamente.</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" id="confirm-remove-btn">Confirmar Remoção</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+
+</html>
